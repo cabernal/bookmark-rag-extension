@@ -1,0 +1,153 @@
+:root {
+  color-scheme: light;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+body {
+  margin: 0;
+  width: 420px;
+  background: #f7f8fb;
+  color: #1f2937;
+}
+
+.index-progress {
+  height: 4px;
+  width: 100%;
+  background: #e2e8f0;
+  opacity: 0;
+  transition: opacity 140ms ease-out;
+}
+
+.index-progress.active {
+  opacity: 1;
+}
+
+.index-progress__bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  transition: width 220ms ease-out;
+}
+
+.content-index-progress {
+  height: 4px;
+  width: 100%;
+  background: #fee2e2;
+  opacity: 0;
+  transition: opacity 140ms ease-out;
+}
+
+.content-index-progress.active {
+  opacity: 1;
+}
+
+.content-index-progress__bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+  transition: width 220ms ease-out;
+}
+
+main {
+  padding: 12px;
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.index-warning {
+  margin: 0 0 10px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #fcd34d;
+  background: #fef3c7;
+  color: #7c2d12;
+  font-size: 12px;
+}
+
+.content-index-warning {
+  margin: 0 0 10px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #fca5a5;
+  background: #fee2e2;
+  color: #7f1d1d;
+  font-size: 12px;
+}
+
+h2 {
+  margin: 12px 0 8px;
+  font-size: 13px;
+}
+
+.results-count {
+  color: #64748b;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 9px;
+}
+
+.actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  background: #111827;
+  color: #fff;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0b1220;
+}
+
+.status {
+  min-height: 16px;
+  margin: 8px 0;
+  color: #334155;
+  font-size: 12px;
+}
+
+#results {
+  margin: 0;
+  padding-left: 16px;
+  max-height: 220px;
+  overflow: auto;
+}
+
+#results li {
+  margin-bottom: 7px;
+}
+
+#results a {
+  color: #0f172a;
+  text-decoration: none;
+}
+
+#results a:hover {
+  text-decoration: underline;
+}
+
+#answer {
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 8px;
+  white-space: pre-wrap;
+  min-height: 64px;
+  max-height: 220px;
+  overflow: auto;
+}

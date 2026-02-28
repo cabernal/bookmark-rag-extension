@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Bookmark RAG Search",
+  "description": "Semantic bookmark search with in-browser embeddings and optional RAG answers.",
+  "version": "0.1.0",
+  "permissions": ["bookmarks", "storage", "offscreen"],
+  "host_permissions": [
+    "<all_urls>",
+    "https://api.openai.com/*",
+    "https://huggingface.co/*",
+    "https://cdn-lfs.huggingface.co/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Bookmark RAG Search",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "bookmark-rag-extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "npm install && npm run vendor",
+    "vendor": "node scripts/sync-vendor.mjs",
+    "lint": "echo 'No linter configured yet'"
+  },
+  "dependencies": {
+    "@xenova/transformers": "^2.17.2"
+  }
+}

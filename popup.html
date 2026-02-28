@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bookmark RAG Search</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div id="indexProgress" class="index-progress" aria-hidden="true">
+      <div id="indexProgressBar" class="index-progress__bar"></div>
+    </div>
+    <div id="contentIndexProgress" class="content-index-progress" aria-hidden="true">
+      <div id="contentIndexProgressBar" class="content-index-progress__bar"></div>
+    </div>
+    <main>
+      <h1>Bookmark RAG Search</h1>
+      <p id="indexWarning" class="index-warning" hidden>
+        Indexing in progress. Search results may be incomplete or less accurate until indexing finishes.
+      </p>
+      <p id="contentIndexWarning" class="content-index-warning" hidden>
+        Bookmark contents are being indexed. Content-aware matches may be incomplete until this finishes.
+      </p>
+      <input id="query" type="text" placeholder="Search bookmarks semantically..." />
+      <div class="actions">
+        <button id="searchBtn" type="button">Search</button>
+        <button id="askBtn" type="button">Ask</button>
+      </div>
+      <p id="status" class="status"></p>
+      <section>
+        <h2>Results <span id="resultsCount" class="results-count">(0)</span></h2>
+        <ul id="results"></ul>
+      </section>
+      <section>
+        <h2>RAG Answer</h2>
+        <pre id="answer"></pre>
+      </section>
+    </main>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

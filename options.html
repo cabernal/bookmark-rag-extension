@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bookmark RAG Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div id="indexProgress" class="index-progress" aria-hidden="true">
+      <div id="indexProgressBar" class="index-progress__bar"></div>
+    </div>
+    <main>
+      <h1>Bookmark RAG Settings</h1>
+
+      <label>
+        OpenAI API Key
+        <input id="apiKey" type="password" placeholder="sk-..." />
+      </label>
+
+      <label>
+        Endpoint
+        <input id="endpoint" type="text" value="https://api.openai.com/v1/chat/completions" />
+      </label>
+
+      <label>
+        Model
+        <input id="model" type="text" value="gpt-4o-mini" />
+      </label>
+
+      <label>
+        Top K
+        <input id="topK" type="number" min="1" max="50" value="12" />
+      </label>
+
+      <label>
+        Vector Weight (0-1)
+        <input id="vectorWeight" type="number" min="0" max="1" step="0.05" value="0.75" />
+      </label>
+
+      <div class="actions">
+        <button id="saveBtn" type="button">Save Settings</button>
+        <button id="reindexBtn" type="button">Reindex Bookmarks</button>
+      </div>
+
+      <pre id="status"></pre>
+    </main>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>
