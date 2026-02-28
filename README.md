@@ -58,31 +58,31 @@ npm run vendor
 
 ```mermaid
 flowchart TD
-    U[Popup UI] -->|SEARCH_BOOKMARKS / ASK_RAG| BG[Background Service Worker]
-    U -->|GET_STATUS polling| BG
-    U -->|port popup-status| BG
+    U[Popup UI] -->|search and ask| BG[Background Service Worker]
+    U -->|status polling| BG
+    U -->|popup status port| BG
 
-    BG -->|ensure offscreen| OF[Offscreen Document]
-    OF -->|pipeline(feature-extraction)| M[Xenova/all-MiniLM-L6-v2]
+    BG -->|ensure offscreen doc| OF[Offscreen Document]
+    OF -->|feature extraction pipeline| M[MiniLM L6 v2]
 
     BG --> IDX1[Metadata Indexer]
     IDX1 -->|bookmark tree| BKM[chrome.bookmarks]
-    IDX1 -->|embed title+folder+url| OF
-    IDX1 --> DB[(IndexedDB documents)]
+    IDX1 -->|embed metadata text| OF
+    IDX1 --> DB[(IndexedDB documents store)]
 
     BG --> IDX2[Content Indexer]
-    IDX2 -->|fetch bookmarked URLs| WEB[Web Pages]
+    IDX2 -->|fetch bookmarked urls| WEB[Web Pages]
     IDX2 -->|extract text snippet| TXT[Content Text]
     IDX2 -->|embed content snippet| OF
     IDX2 --> DB
 
     BG --> SRCH[Hybrid Retrieval]
-    SRCH -->|vector + lexical ranking| DB
+    SRCH -->|vector and lexical ranking| DB
     SRCH --> RES[Paginated Results]
     RES --> U
 
     BG --> RAG[Answer Generator]
-    RAG -->|top-k context| OAI[OpenAI API optional]
+    RAG -->|top k context| OAI[OpenAI API optional]
     RAG --> U
 ```
 
