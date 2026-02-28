@@ -57,33 +57,40 @@ npm run vendor
 ## Architecture (Mermaid)
 
 ```mermaid
-flowchart TD
-    U[Popup UI] -->|search and ask| BG[Background Service Worker]
-    U -->|status polling| BG
-    U -->|popup status port| BG
+flowchart LR
+    U[Popup UI]
+    BG[Background Service Worker]
+    DB[(IndexedDB documents store)]
+    EMB[Offscreen embeddings MiniLM L6 v2]
+    OAI[OpenAI API optional]
 
-    BG -->|ensure offscreen doc| OF[Offscreen Document]
-    OF -->|feature extraction pipeline| M[MiniLM L6 v2]
+    U -->|search ask status| BG
 
-    BG --> IDX1[Metadata Indexer]
-    IDX1 -->|bookmark tree| BKM[chrome.bookmarks]
-    IDX1 -->|embed metadata text| OF
-    IDX1 --> DB[(IndexedDB documents store)]
+    subgraph Indexing
+        MIDX[Metadata indexing]
+        CIDX[Content indexing]
+        FETCH[Fetch page text]
+        MIDX --> EMB
+        MIDX --> DB
+        CIDX --> FETCH --> EMB
+        CIDX --> DB
+    end
 
-    BG --> IDX2[Content Indexer]
-    IDX2 -->|fetch bookmarked urls| WEB[Web Pages]
-    IDX2 -->|extract text snippet| TXT[Content Text]
-    IDX2 -->|embed content snippet| OF
-    IDX2 --> DB
+    BG --> MIDX
+    BG --> CIDX
 
-    BG --> SRCH[Hybrid Retrieval]
-    SRCH -->|vector and lexical ranking| DB
-    SRCH --> RES[Paginated Results]
-    RES --> U
+    subgraph QueryPath[Query path]
+        RET[Hybrid retrieval]
+        RES[Paginated results]
+        RAG[RAG answer]
+    end
 
-    BG --> RAG[Answer Generator]
-    RAG -->|top k context| OAI[OpenAI API optional]
-    RAG --> U
+    BG --> RET
+    RET --> DB
+    RET --> RES --> U
+
+    BG --> RAG --> U
+    RAG --> OAI
 ```
 
 ## Indexing Design
